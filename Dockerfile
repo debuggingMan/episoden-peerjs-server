@@ -1,4 +1,4 @@
-FROM docker.io/library/node:18.18.0 as build
+FROM arm64v8/node:18-alpine as build
 RUN mkdir /peer-server
 WORKDIR /peer-server
 COPY package.json package-lock.json ./
@@ -7,7 +7,7 @@ COPY . ./
 RUN npm run build
 RUN npm run test
 
-FROM docker.io/library/node:18.18.0-alpine as production
+FROM arm64v8/node:18-alpine as production
 RUN mkdir /peer-server
 WORKDIR /peer-server
 COPY package.json package-lock.json ./
